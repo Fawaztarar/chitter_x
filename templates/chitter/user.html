@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .user-details-container {
+            max-width: 600px;
+            margin: auto;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .user-details-container h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        .user-details-item {
+            margin-bottom: 15px;
+        }
+        .user-details-label {
+            font-weight: bold;
+            color: #555;
+        }
+        .user-details-value {
+            color: #333;
+        }
+        .edit-user-link {
+            display: block;
+            margin-top: 15px;
+            text-decoration: none;
+            color: #007bff;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="user-details-container">
+        <h2>User Details</h2>
+        <div class="user-details-item">
+            <span class="user-details-label">User ID:</span>
+            <span class="user-details-value">{{ user.id }}</span>
+        </div>
+        <div class="user-details-item">
+            <span class="user-details-label">Name:</span>
+            <span class="user-details-value">{{ user.name }}</span>
+        </div>
+        <div class="user-details-item">
+            <span class="user-details-label">Username:</span>
+            <span class="user-details-value">{{ user.username }}</span>
+        </div>
+        <div class="user-details-item">
+            <span class="user-details-label">Email:</span>
+            <span class="user-details-value">{{ user.email }}</span>
+        </div>
+        <a href="/chitter/user/{{ user.id }}/edit" class="edit-user-link">Edit User</a>
+    </div>
+</body>
+</html>

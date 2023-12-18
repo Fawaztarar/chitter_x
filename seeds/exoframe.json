@@ -1,0 +1,10 @@
+{
+  "name": "fawaztarar-chitter-database",
+  "domain": false,
+  "hostname": "fawaztarar-chitter-database",
+  "image": "postgres:12",
+  "env": {
+    "POSTGRES_PASSWORD": "@fawaztarar-postgres-password"
+  },
+  "volumes": ["fawaztarar_chitter_database_volume:/var/lib/postgresql/data"]
+}

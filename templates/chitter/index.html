@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitter Posts</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            color: #3498db;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: transform 0.3s ease-in-out;
+            position: relative; /* Added for positioning */
+        }
+        li:hover {
+            transform: scale(1.05);
+        }
+        strong {
+            color: #e74c3c;
+        }
+        /* Style for the "Add New Post" link */
+        .add-post-link {
+            display: block;
+            margin-top: 20px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        /* Style for the edit and delete icons */
+        .edit-delete-icons {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            display: flex;
+        }
+        .edit-icon,
+        .delete-icon {
+            margin-right: 10px;
+            color: #007bff;
+            cursor: pointer;
+        }
+        /* Style for the logout button */
+        .logout-button {
+            position: absolute;
+            top: 10px;
+            right: 60px;
+            background-color: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Logout button -->
+    <button onclick="location.href='/chitter/login'" class="logout-button">Logout</button>
+
+    <h1>Chitter Posts</h1>
+    
+    {% if posts %}
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <div class="edit-delete-icons">
+                        <a href="/chitter/post/{{ post.id }}" class="edit-icon">Edit</a>
+                        <a href="/chitter/post/{{ post.id }}/delete" class="delete-icon">Delete</a>
+                    </div>
+                    <strong>ID:</strong> {{ post.id }}<br>
+                    <strong>Message:</strong> {{ post.message }}<br>
+                    <strong>User ID:</strong> {{ post.user_id }}<br>
+                    <strong>Timestamp:</strong> {{ post.timestamp }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No posts available.</p>
+    {% endif %}
+    
+    <!-- Link to add a new post -->
+    <a href="/chitter/post/new" class="add-post-link">Add New Post</a>
+    <input type="hidden" id="login_id" name="login_id" value="{{ login_id }}">
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Post</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+        }
+        h1 {
+            color: #3498db;
+        }
+        .post-container {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        strong {
+            color: #e74c3c;
+        }
+        .edit-post-form {
+            margin-top: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        .update-button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Post</h1>
+
+    <div class="post-container">
+        <strong>ID:</strong> {{ post.id }}<br>
+        <strong>Message:</strong> {{ post.message }}<br>
+        <strong>User ID:</strong> {{ post.user_id }}<br>
+        <strong>Timestamp:</strong> {{ post.timestamp }}
+    </div>
+
+    <form action="/chitter/post/{{ post.id }}/edit" method="post" class="edit-post-form">
+        <div class="form-group">
+            <label for="content">Edit Message:</label>
+            <input type="text" id="content" name="content" value="{{ post.message }}" required>
+        </div>
+        <button type="submit" class="update-button">Update Post</button>
+    </form>
+
+    <a href="/chitter" style="display: block; text-decoration: none; color: #007bff;">Back to Posts</a>
+</body>
+</html>
