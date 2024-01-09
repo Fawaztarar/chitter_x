@@ -22,9 +22,8 @@ parts of the project work, or you can delete it and start from scratch.
 # If you have problems with the above, contact your coach
 
 # Create a test and development database
-; createdb YOUR_PROJECT_NAME
-; 
-
+; createdb chitter
+; createdb chitter_test
 # Open lib/database_connection.py and change the database names
 ; open lib/database_connection.py
 
