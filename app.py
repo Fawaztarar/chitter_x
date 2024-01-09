@@ -6,58 +6,14 @@ from lib.users_repository import UserRepository
 from lib.posts import Post
 from lib.post_repository import PostRepository
 from datetime import datetime
-import psycopg2 as psycopg
-
-
-
-
-def get_database_url():
-    # The app can run in two 'modes' — production mode, or development mode.
-    # This is determined by the `APP_ENV` environment variable.
-    # Having dev and production modes is quite a common pattern and you will
-    # see it in many real-world applications.
-    if os.environ.get("APP_ENV") == "PRODUCTION":
-        password = os.environ.get("POSTGRES_PASSWORD")
-        hostname = os.environ.get("POSTGRES_HOSTNAME")
-        # This URL below is constructed out of the password and hostname
-        # We'll use this URL to connect to the database in production
-        return f"postgres://postgres:{password}@{hostname}:5432/postgres"
-    else:
-        # This URL is for our local database. You may need to edit it.
-        return "postgres://localhost:5432/postgres"
-
-# We're going to write a function that sets up the database with the right table
-def setup_database(url):
-    # We connect using the URL
-    connection = psycopg.connect(url)
-
-    # Get a 'cursor' object that we can use to run SQL
-    cursor = connection.cursor()
-
-    # Execute some SQL to create the table
-    cursor.execute("CREATE TABLE IF NOT EXISTS messages (message TEXT);")
-
-    # And commit the changes to ensure that they 'stick' in the database.
-    connection.commit()
-
-# We run the two functions above
-POSTGRES_URL = get_database_url()
-setup_database(POSTGRES_URL)
-
-
-
-
-
-
-
-
-
 
 # Create a new Flask app
 app = Flask(__name__)
 app.jinja_env.autoescape = True
 login_id = 3
 # == Your Routes Here ==
+
+
 
 @app.route('/chitter')
 def get_menu():
@@ -197,13 +153,8 @@ def get_emoji():
     return render_template('emoji.html', emoji=':)')
 
 if __name__ == '__main__':
-    # Check if the application environment is set to production
-    if os.environ.get("APP_ENV") == "PRODUCTION":
-        # Run without debug mode in production
-        app.run(port=int(os.environ.get('PORT', 5000)), host='0.0.0.0')
-    else:
-        # Run with debug mode in non-production environments
-        app.run(debug=True, port=int(os.environ.get('PORT', 5000)), host='0.0.0.0')
+    app.run(debug=True, port=int(os.environ.get('PORT', 5001)))
+
 
 
 

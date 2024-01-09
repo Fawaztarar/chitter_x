@@ -23,7 +23,7 @@ parts of the project work, or you can delete it and start from scratch.
 
 # Create a test and development database
 ; createdb YOUR_PROJECT_NAME
-; createdb YOUR_PROJECT_NAME_test
+; 
 
 # Open lib/database_connection.py and change the database names
 ; open lib/database_connection.py
