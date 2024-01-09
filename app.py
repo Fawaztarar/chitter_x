@@ -45,19 +45,13 @@ POSTGRES_URL = get_database_url()
 setup_database(POSTGRES_URL)
 
 
-
-
-
-
-
-
-
-
 # Create a new Flask app
 app = Flask(__name__)
 app.jinja_env.autoescape = True
 login_id = 3
 # == Your Routes Here ==
+
+
 
 @app.route('/chitter')
 def get_menu():
@@ -204,6 +198,7 @@ if __name__ == '__main__':
     else:
         # Run with debug mode in non-production environments
         app.run(debug=True, port=int(os.environ.get('PORT', 5000)), host='0.0.0.0')
+
 
 
 
